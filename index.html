@@ -430,6 +430,59 @@
     outline-offset: 3px;
   }
   .btn-book svg { flex: none; width: 18px; height: 18px; }
+
+  /* Currency estimator. Quiet by default - the US dollar figure above is the
+     price; this only saves the reader opening another tab. */
+  .fx { margin-top: 0.7rem; }
+  .fx:empty { display: none; }
+  .fx-label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.35rem;
+  }
+  .fx-flags { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; }
+  .fx-btn {
+    min-width: 38px;
+    padding: 0.3rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink-soft);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+  }
+  .fx-btn:hover { border-color: var(--pine); color: var(--pine); }
+  .fx-btn[aria-pressed="true"] {
+    border-color: var(--pine);
+    background: var(--pine);
+    color: var(--paper);
+  }
+  .fx-btn:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+  .fx-out {
+    margin-left: 0.45rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .fx-out:empty { display: none; }
+  .fx-out .fx-approx { font-weight: 400; color: var(--mist); }
+  .fx-star {
+    color: var(--shu);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 0.15rem;
+    vertical-align: super;
+    font-size: 0.75em;
+  }
+  .fx-star:hover, .fx-star:focus-visible { text-decoration: underline; }
+  @media print { .fx { display: none; } }
 </style>
   <!-- Umami Cloud: cookieless analytics, no consent banner required. -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c7f4d0e9-4884-4bb6-a9c8-1163d4019874"></script>
@@ -502,6 +555,7 @@
           <div class="fact-value">US$550 — flat, per party</div>
         </div>
       </div>
+      <div class="fx" data-usd="550"></div>
       <div class="walks">
         <div class="walk">
           <h3>Getting there <span class="kanji">出発</span></h3>
@@ -563,6 +617,7 @@
           <div class="fact-value">US$350 — flat, per party</div>
         </div>
       </div>
+      <div class="fx" data-usd="350"></div>
       <ol class="itin">
         <li>Meet at Hiroshima Station — 2nd floor, south entrance, just
         outside the information office. (We're taking the train to catch the
@@ -616,6 +671,7 @@
           <div class="fact-value">US$250 — flat, per party</div>
         </div>
       </div>
+      <div class="fx" data-usd="250"></div>
       <ol class="itin">
         <li>Meet up — anywhere in the city, whether you're arriving by boat,
         submarine, spacecraft, time portal, or interdimensional shuttle. I can
@@ -677,6 +733,9 @@
         the time of booking.</span></li>
         <li><span><strong>Cancelling two weeks or less before the tour</strong>
         — refunds are handled case by case.</span></li>
+        <li id="currency"><span><strong>* Currency</strong> — the tour price is charged in
+        US dollars. Every other figure on this page, including the converted
+        prices, is an estimate and will move with the market.</span></li>
       </ul>
     </section>
 
@@ -719,6 +778,127 @@
   <a class="btn-contact" href="https://wa.me/818019024873?text=Hi%20Brad%21%20I%27d%20like%20to%20ask%20about%20a%20tour.%0A%0AWhen%20I%27m%20coming%20to%20Hiroshima%3A%0AHow%20many%20in%20my%20party%3A%0AWhich%20tour%3A%0AMy%20favorite%20color%3A%0A" aria-label="Message Brad on WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.83c2.16 0 4.19.84 5.72 2.37a8.03 8.03 0 0 1 2.37 5.72c0 4.46-3.63 8.08-8.09 8.08a8.2 8.2 0 0 1-4.13-1.13l-.3-.18-3.07.81.82-3-.19-.31a8.05 8.05 0 0 1-1.24-4.29c0-4.46 3.63-8.08 8.09-8.08Z"/><path d="M8.6 7.1c-.19-.43-.39-.44-.57-.45h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.13.17 1.74 2.79 4.3 3.8 2.13.84 2.56.67 3.03.63.46-.04 1.5-.61 1.71-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.48-.29-.25-.13-1.5-.74-1.73-.82-.23-.09-.4-.13-.57.12-.17.25-.65.82-.8.99-.15.17-.29.19-.54.06-.25-.12-1.07-.39-2.04-1.26-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.55-1.37-.77-1.87Z"/></svg></a>
   <a class="btn-contact" href="https://instagram.com/toursbybrad" aria-label="Brad on Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg></a>
 </nav>
+
+
+<script>
+/* Per-currency price estimator.
+   Buttons are built synchronously so the control is never half-present. Rates
+   are fetched once per visit; a tap before they land shows a placeholder and
+   fills itself in. The US$ figure above is always the authoritative price. */
+(function () {
+  var rows = document.querySelectorAll('.fx[data-usd]');
+  if (!rows.length || !window.Intl) return;
+
+  /* Labels, not bare symbols: A$ and NZ$ both use a dollar sign. */
+  var CUR = [
+    { code: 'GBP', label: '£',   name: 'British pounds' },
+    { code: 'EUR', label: '€',   name: 'euro' },
+    { code: 'AUD', label: 'A$',       name: 'Australian dollars' },
+    { code: 'NZD', label: 'NZ$',      name: 'New Zealand dollars' },
+    { code: 'JPY', label: '¥',   name: 'Japanese yen' }
+  ];
+
+  var rates = null, failed = false, built = [];
+
+  /* Round so it reads as an estimate, never as a quote. */
+  function tidy(v) {
+    if (v >= 100000) return Math.round(v / 1000) * 1000;
+    if (v >= 10000) return Math.round(v / 100) * 100;
+    if (v >= 1000) return Math.round(v / 10) * 10;
+    return Math.round(v / 5) * 5;
+  }
+
+  function money(usd, code) {
+    var r = rates && rates[code];
+    if (!r) return null;
+    try {
+      return new Intl.NumberFormat('en', {
+        style: 'currency', currency: code, maximumFractionDigits: 0
+      }).format(tidy(usd * r));
+    } catch (e) { return null; }
+  }
+
+  function render(row, out, usd) {
+    var code = row.getAttribute('data-active');
+    if (!code) { out.textContent = ''; return; }
+    if (failed) { out.textContent = 'rate unavailable'; return; }
+    if (!rates) { out.textContent = '…'; return; }
+    var m = money(usd, code);
+    out.innerHTML = m
+      ? '<span class="fx-approx">≈ </span>' + m +
+        '<a class="fx-star" href="#currency" aria-label="Read the currency note">*</a>'
+      : 'rate unavailable';
+    out.title = "Approximate, at today's rate. You are charged in US dollars.";
+  }
+
+  Array.prototype.forEach.call(rows, function (row) {
+    var usd = parseFloat(row.getAttribute('data-usd'));
+    if (!isFinite(usd)) return;
+
+    var label = document.createElement('span');
+    label.className = 'fx-label';
+    label.textContent = 'See it in your money *';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'fx-flags';
+
+    var out = document.createElement('span');
+    out.className = 'fx-out';
+    out.setAttribute('aria-live', 'polite');
+
+    CUR.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'fx-btn';
+      b.textContent = c.label;
+      b.setAttribute('aria-label', 'Show this price in ' + c.name);
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(wrap.querySelectorAll('.fx-btn'), function (o) {
+          o.setAttribute('aria-pressed', 'false');
+        });
+        b.setAttribute('aria-pressed', 'true');
+        row.setAttribute('data-active', c.code);
+        render(row, out, usd);
+      });
+      wrap.appendChild(b);
+    });
+
+    wrap.appendChild(out);
+    row.appendChild(label);
+    row.appendChild(wrap);
+    built.push({ row: row, out: out, usd: usd });
+  });
+
+  function refreshAll() {
+    built.forEach(function (b) {
+      if (b.row.getAttribute('data-active')) render(b.row, b.out, b.usd);
+    });
+  }
+
+  var CACHE = 'fxUSD';
+  try {
+    var hit = JSON.parse(sessionStorage.getItem(CACHE) || 'null');
+    if (hit && hit.rates) rates = hit.rates;
+  } catch (e) { /* storage blocked; fetch instead */ }
+
+  if (!rates && window.fetch) {
+    fetch('https://open.er-api.com/v6/latest/USD')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || j.result !== 'success' || !j.rates) failed = true;
+        else {
+          rates = j.rates;
+          try { sessionStorage.setItem(CACHE, JSON.stringify({ rates: rates })); } catch (e) {}
+        }
+        refreshAll();
+      })
+      .catch(function () { failed = true; refreshAll(); });
+  } else if (!rates) {
+    failed = true;
+  }
+})();
+</script>
 
 </body>
 </html>
