@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Brad Pearson — Hiroshima Walking Tours</title>
 <meta name="description" content="Private English-language walking tours of Hiroshima with Brad Pearson — retired US Marine, longtime resident, and detail-oriented history guide in no particular hurry.">
 <meta property="og:title" content="Brad Pearson — Hiroshima Walking Tours">
@@ -347,6 +347,62 @@
     .route { padding-left: 1.6rem; }
     .stop::before { left: -1.6rem; }
   }
+
+  /* Persistent contact bar. This page exists to start a conversation, so the
+     way to start one should never scroll out of reach. */
+  .contact-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom, 0px));
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -2px 16px var(--shadow);
+  }
+  .contact-bar .cb-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--mist);
+    margin-right: 0.15rem;
+  }
+  /* On a narrow phone the icons matter more than the word. */
+  @media (max-width: 400px) {
+    .contact-bar .cb-label { display: none; }
+  }
+  .btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: none;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--pine);
+    background: transparent;
+    text-decoration: none;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .btn-contact:hover,
+  .btn-contact:focus-visible {
+    background: var(--pine);
+    color: var(--paper);
+    border-color: var(--pine);
+  }
+  .btn-contact:focus-visible {
+    outline: 2px solid var(--shu);
+    outline-offset: 3px;
+  }
+  .btn-contact svg { width: 22px; height: 22px; flex: none; }
+  /* Keep the footer clear of the fixed bar rather than letting it hide behind. */
+  body { padding-bottom: 5.75rem; }
+  @media print { .contact-bar { display: none; } body { padding-bottom: 0; } }
 </style>
 </head>
 <body>
@@ -632,6 +688,13 @@
   </footer>
 
 </div>
+
+<nav class="contact-bar" aria-label="Contact Brad">
+  <span class="cb-label">Book a tour</span>
+  <a class="btn-contact" href="mailto:jrflippp@gmail.com" aria-label="Email Brad" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.2 6.4 8.8 6.1 8.8-6.1"/></svg></a>
+  <a class="btn-contact" href="https://wa.me/818019024873" aria-label="Message Brad on WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.83c2.16 0 4.19.84 5.72 2.37a8.03 8.03 0 0 1 2.37 5.72c0 4.46-3.63 8.08-8.09 8.08a8.2 8.2 0 0 1-4.13-1.13l-.3-.18-3.07.81.82-3-.19-.31a8.05 8.05 0 0 1-1.24-4.29c0-4.46 3.63-8.08 8.09-8.08Z"/><path d="M8.6 7.1c-.19-.43-.39-.44-.57-.45h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.6c.13.17 1.74 2.79 4.3 3.8 2.13.84 2.56.67 3.03.63.46-.04 1.5-.61 1.71-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.48-.29-.25-.13-1.5-.74-1.73-.82-.23-.09-.4-.13-.57.12-.17.25-.65.82-.8.99-.15.17-.29.19-.54.06-.25-.12-1.07-.39-2.04-1.26-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.55-1.37-.77-1.87Z"/></svg></a>
+  <a class="btn-contact" href="https://instagram.com/toursbybrad" aria-label="Brad on Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+</nav>
 
 </body>
 </html>

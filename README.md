@@ -20,7 +20,7 @@ nobody finds from a page people find and leave.
 - **Cookieless.** No consent banner needed. Most enquiries come from Europe and
   Australia, so GDPR applies to the visitors regardless of where the server is.
 - Visitor data is not fed into an advertising graph.
-- The free tier covers 10,000 events a month, which is far more than this page
+- The free tier covers 100,000 events a month, which is far more than this page
   will see.
 
 ### Setup
