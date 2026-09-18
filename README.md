@@ -11,9 +11,10 @@ Edit the file, commit, push. The live site updates in about a minute.
 
 ## Analytics — Umami Cloud
 
-The site has no analytics until the step below is done. GitHub Pages gives no
-server logs and no visitor stats, so without this there is no way to tell a page
-nobody finds from a page people find and leave.
+**Installed 2026-09-18.** The tracking tag sits at the end of `<head>` in
+`index.html`. GitHub Pages gives no server logs and no visitor stats, so without
+this there was no way to tell a page nobody finds from one people find and
+leave.
 
 **Umami** was chosen over Google Analytics deliberately:
 
@@ -23,26 +24,19 @@ nobody finds from a page people find and leave.
 - The free tier covers 100,000 events a month, which is far more than this page
   will see.
 
-### Setup
+### How it is wired
 
-1. Create an account at **https://cloud.umami.is** — free tier, no card.
-2. **Settings → Websites → Add website.** Name it anything; set the domain to
-   `jrflippp-ux.github.io`.
-3. Open the new website's **Edit → Tracking code**. Copy the `data-website-id`
-   value — a UUID that looks like `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
-4. Paste that id into the script tag in `index.html`, immediately above
-   `</head>`:
+```html
+<script defer src="https://cloud.umami.is/script.js"
+        data-website-id="c7f4d0e9-4884-4bb6-a9c8-1163d4019874"></script>
+```
 
-   ```html
-   <script defer src="https://cloud.umami.is/script.js"
-           data-website-id="PASTE-THE-UUID-HERE"></script>
-   ```
+The website id is **not a secret** — it ships in the page source by design and
+is safe to commit. The dashboard is at https://cloud.umami.is.
 
-5. Commit and push. Load the live site once, then check the Umami dashboard —
-   the visit should appear within a few seconds.
-
-The website id is **not a secret**. It is visible in the page source by design
-and is safe to commit.
+To rebuild this from scratch: create a site under **Settings → Websites → Add
+website** with the domain set to the host the page is served from, then copy the
+id out of **Edit → Tracking code**.
 
 ### What to look at
 
