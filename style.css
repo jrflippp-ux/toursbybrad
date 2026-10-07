@@ -675,4 +675,8 @@
   @media (max-width: 560px) {
     .eyebrow { align-items: flex-start; }
     .eyebrow .kanji { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0.25em; line-height: 1; }
+    /* Right-hand side, where a vertical line of Japanese properly starts (Brad, 10-07). */
+    .eyebrow > span:not(.kanji) { order: 1; }
+    .eyebrow::after { order: 2; align-self: center; }
+    .eyebrow .kanji { order: 3; }
   }
