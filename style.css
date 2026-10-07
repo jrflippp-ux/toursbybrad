@@ -670,4 +670,9 @@
   .guide .lede strong { color: var(--ink); font-weight: 600; }
   /* The width/height attributes are there to stop layout jumping; let CSS decide the real shape. */
   .tour-card img, .banner img, .guide img, .photo-pair img { height: auto; }
-  .eyebrow .kanji { white-space: nowrap; }
+  /* On phones 広島 stands top to bottom, old-style (Brad, 2026-10-07: "reads like old style japanese").
+     Deliberate vertical writing, not an accidental wrap, so every phone shows it the same way. */
+  @media (max-width: 560px) {
+    .eyebrow { align-items: flex-start; }
+    .eyebrow .kanji { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0.25em; line-height: 1; }
+  }
