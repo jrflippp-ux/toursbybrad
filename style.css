@@ -1,0 +1,672 @@
+  :root {
+    --paper: #F7F6F1;
+    --ink: #24292C;
+    --ink-soft: #4A5156;
+    --mist: #8A9199;
+    --pine: #38634A;
+    --pine-soft: #4A7A5D;
+    --shu: #B33A26;
+    --line: #DDDBD2;
+    --card: #FFFFFF;
+    --shadow: rgba(36, 41, 44, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #171D1A;
+      --ink: #E9E6DD;
+      --ink-soft: #B8B5AC;
+      --mist: #7C847E;
+      --pine: #8CBD9E;
+      --pine-soft: #A3CDB2;
+      --shu: #D96A50;
+      --line: #2C342E;
+      --card: #1E2521;
+      --shadow: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    line-height: 1.65;
+    font-size: 1.05rem;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display, h1, h2 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Yu Mincho", serif;
+    font-weight: 400;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .kanji {
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS Mincho", serif;
+  }
+
+  .page {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    padding: 5.5rem 0 4rem;
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pine);
+    margin-bottom: 1.75rem;
+  }
+  .eyebrow .kanji {
+    font-size: 1.1rem;
+    letter-spacing: 0.35em;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lede {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 36rem;
+    margin: 1.5rem 0 2.25rem;
+  }
+  .hero p.lede strong { color: var(--ink); font-weight: 600; }
+
+  /* Google rating. Hand-set numbers — update them when the profile moves. */
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin: 0 0 1.9rem;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .rating-stars {
+    color: #C8860D;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+  @media (prefers-color-scheme: dark) {
+    .rating-stars { color: #E0A83C; }
+  }
+  .rating strong { color: var(--ink); font-weight: 600; }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
+  }
+  .btn-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--pine);
+    color: #FBF9F4;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background 150ms ease;
+  }
+  @media (prefers-color-scheme: dark) {
+    .btn-ig { color: #14201A; }
+  }
+  .btn-ig:hover { background: var(--pine-soft); }
+  .btn-ig:focus-visible {
+    outline: 2px solid var(--shu);
+    outline-offset: 3px;
+  }
+  .btn-ig svg { flex: none; }
+  .cta-note {
+    font-size: 0.9rem;
+    color: var(--mist);
+    margin-top: 0.9rem;
+  }
+
+  /* ---- Route line sections ---- */
+  .route {
+    position: relative;
+    padding-left: 2.25rem;
+  }
+  .route::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    width: 2px;
+    background: var(--pine);
+    opacity: 0.55;
+  }
+  .stop {
+    position: relative;
+    padding: 2.5rem 0;
+  }
+  .stop + .stop {
+    border-top: 1px solid var(--line);
+  }
+  .stop::before {
+    content: "";
+    position: absolute;
+    left: -2.25rem;
+    top: 3.05rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2.5px solid var(--pine);
+  }
+  .stop-label {
+    font-size: 0.76rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+  }
+  .stop p { margin: 0 0 1rem; color: var(--ink-soft); max-width: 38rem; }
+  .stop p:last-child { margin-bottom: 0; }
+  .stop p strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- Walk cards ---- */
+  .walks {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .walk {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.4rem 1.5rem;
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+  .walk h3 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Yu Mincho", serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0 0 0.4rem;
+  }
+  .walk h3 .kanji {
+    font-weight: 400;
+    color: var(--pine);
+    font-size: 1rem;
+    margin-left: 0.6rem;
+  }
+  .walk p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---- Numbered itinerary ---- */
+  .itin {
+    list-style: none;
+    counter-reset: leg;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.6rem;
+    max-width: 38rem;
+  }
+  .itin li {
+    counter-increment: leg;
+    display: flex;
+    gap: 0.85rem;
+    align-items: baseline;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+  .itin li::before {
+    content: counter(leg, decimal-leading-zero);
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    color: var(--pine);
+    font-size: 0.85rem;
+    flex: none;
+    min-width: 1.6rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- Practical / caveat lists ---- */
+  .facts {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: grid;
+    gap: 0.65rem;
+    max-width: 38rem;
+  }
+  .facts li {
+    display: flex;
+    gap: 0.85rem;
+    align-items: baseline;
+    font-size: 1rem;
+    color: var(--ink-soft);
+  }
+  .facts li::before {
+    content: "—";
+    color: var(--pine);
+    flex: none;
+  }
+  .facts strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- Fun facts strip ---- */
+  .trivia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .fact-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+  .fact-card .fact-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pine);
+    margin-bottom: 0.35rem;
+  }
+  .fact-card .fact-value {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--mist);
+  }
+  footer a {
+    color: var(--pine);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover { text-decoration: underline; }
+  footer a:focus-visible {
+    outline: 2px solid var(--shu);
+    outline-offset: 3px;
+  }
+  .footer-gag {
+    font-style: italic;
+  }
+
+  /* ---- Torii mark ---- */
+  .torii {
+    display: block;
+    margin: 0 0 1.5rem;
+    color: var(--shu);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * {
+      animation: rise 550ms ease both;
+    }
+    .hero > *:nth-child(2) { animation-delay: 70ms; }
+    .hero > *:nth-child(3) { animation-delay: 140ms; }
+    .hero > *:nth-child(4) { animation-delay: 210ms; }
+    .hero > *:nth-child(5) { animation-delay: 280ms; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .route { padding-left: 1.6rem; }
+    .stop::before { left: -1.6rem; }
+  }
+
+  /* Persistent contact bar. This page exists to start a conversation, so the
+     way to start one should never scroll out of reach. */
+  .contact-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom, 0px));
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -2px 16px var(--shadow);
+  }
+  .contact-bar .cb-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--mist);
+    margin-right: 0.15rem;
+  }
+  /* On a narrow phone the icons matter more than the word. */
+  @media (max-width: 400px) {
+    .contact-bar .cb-label { display: none; }
+  }
+  .btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: none;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--pine);
+    background: transparent;
+    text-decoration: none;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .btn-contact:hover,
+  .btn-contact:focus-visible {
+    background: var(--pine);
+    color: var(--paper);
+    border-color: var(--pine);
+  }
+  .btn-contact:focus-visible {
+    outline: 2px solid var(--shu);
+    outline-offset: 3px;
+  }
+  .btn-contact svg { width: 22px; height: 22px; flex: none; }
+  /* Keep the footer clear of the fixed bar rather than letting it hide behind. */
+  body { padding-bottom: 5.75rem; }
+  @media print { .contact-bar { display: none; } body { padding-bottom: 0; } }
+
+  /* Booking buttons. Same weight for all three: the page should not imply one
+     channel is the real one and the others are afterthoughts. */
+  .btn-book {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--pine);
+    color: #FBF9F4;
+    text-decoration: none;
+    padding: 0.85rem 1.4rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background 150ms ease;
+  }
+  @media (prefers-color-scheme: dark) {
+    .btn-book { color: #14201A; }
+  }
+  .btn-book:hover { background: var(--pine-soft); }
+  .btn-book:focus-visible {
+    outline: 2px solid var(--shu);
+    outline-offset: 3px;
+  }
+  .btn-book svg { flex: none; width: 18px; height: 18px; }
+
+  /* Currency estimator. Quiet by default - the US dollar figure above is the
+     price; this only saves the reader opening another tab. */
+  .fx { margin-top: 0.7rem; }
+  .fx:empty { display: none; }
+  .fx-label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.35rem;
+  }
+  .fx-flags { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; }
+  .fx-btn {
+    min-width: 38px;
+    padding: 0.3rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink-soft);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+  }
+  .fx-btn:hover { border-color: var(--pine); color: var(--pine); }
+  .fx-btn[aria-pressed="true"] {
+    border-color: var(--pine);
+    background: var(--pine);
+    color: var(--paper);
+  }
+  .fx-btn:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+  .fx-out {
+    margin-left: 0.45rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .fx-out:empty { display: none; }
+  .fx-out .fx-approx { font-weight: 400; color: var(--mist); }
+  .fx-star {
+    color: var(--shu);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 0.15rem;
+    vertical-align: super;
+    font-size: 0.75em;
+  }
+  .fx-star:hover, .fx-star:focus-visible { text-decoration: underline; }
+  @media print { .fx { display: none; } }
+
+  /* ==== 2026-10-07 rework: menu, tour grid, photos ==== */
+
+  /* Top bar. A menu, not a scroll: every page is one tap from every other. */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+  .brand svg { color: var(--shu); flex: none; }
+  .menu {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu a {
+    display: block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 3px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .menu a:hover { color: var(--pine); background: var(--card); }
+  .menu a[aria-current="page"] { color: var(--pine); box-shadow: inset 0 -2px 0 var(--pine); }
+  .menu a:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+  .menu .menu-book a { background: var(--pine); color: #FBF9F4; }
+  .menu .menu-book a:hover { background: var(--pine-soft); color: #FBF9F4; }
+  @media (prefers-color-scheme: dark) {
+    .menu .menu-book a, .menu .menu-book a:hover { color: #14201A; }
+  }
+  /* Narrow phones: the four links still fit on one line if the brand shrinks. */
+  @media (max-width: 560px) {
+    .topbar-inner { padding: 0.55rem 1rem; flex-direction: column; align-items: stretch; gap: 0.35rem; }
+    .brand { justify-content: center; font-size: 1.05rem; }
+    .menu { justify-content: space-between; }
+    .menu a { padding: 0.4rem 0.55rem; font-size: 0.9rem; }
+  }
+
+  .page-wide { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem 6rem; }
+  @media (max-width: 480px) { .page-wide, .page { padding-left: 1rem; padding-right: 1rem; } }
+
+  /* Compact hero on the front page so the tours sit high. */
+  .hero.compact { padding: 3rem 0 2rem; max-width: 46rem; }
+  .hero.compact h1 { font-size: clamp(2.1rem, 6vw, 3.1rem); }
+  .hero.compact p.lede { margin: 1.1rem 0 1.4rem; }
+
+  /* Tour cards. All four on the front page, side by side where there's room. */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0 1.25rem;
+  }
+  .section-head h2 { margin: 0; }
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 1.1rem;
+  }
+  .tour-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px var(--shadow);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .tour-card:hover { border-color: var(--pine); box-shadow: 0 4px 14px var(--shadow); }
+  .tour-card:focus-visible { outline: 2px solid var(--shu); outline-offset: 3px; }
+  .tour-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: var(--line);
+  }
+  .tour-card-body { padding: 1rem 1.1rem 1.15rem; display: flex; flex-direction: column; flex: 1; }
+  .tour-card .stop-label { margin-bottom: 0.3rem; font-size: 0.7rem; }
+  .tour-card h3 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Yu Mincho", serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin: 0 0 0.45rem;
+  }
+  .tour-card p { margin: 0 0 0.9rem; font-size: 0.95rem; color: var(--ink-soft); }
+  .tour-meta {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
+    font-size: 0.85rem;
+    color: var(--mist);
+  }
+  .tour-meta .price { color: var(--ink); font-weight: 700; font-size: 1rem; }
+  .tour-more { margin-top: 0.7rem; color: var(--pine); font-weight: 600; font-size: 0.92rem; }
+
+  /* Banner photo at the top of each tour page. */
+  .banner {
+    margin: 1.5rem 0 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .banner img { display: block; width: 100%; max-height: 26rem; object-fit: cover; }
+  .photo-credit { font-size: 0.78rem; color: var(--mist); margin: 0.4rem 0 0; }
+  .photo-pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .photo-pair img {
+    display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 4px; border: 1px solid var(--line);
+  }
+
+  /* Guide teaser / about portrait. */
+  .guide {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.4rem;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .guide img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); }
+  .guide h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .guide p { margin: 0 0 0.8rem; color: var(--ink-soft); }
+  .guide a.more { color: var(--pine); font-weight: 600; text-decoration: none; }
+  .guide a.more:hover { text-decoration: underline; }
+  @media (max-width: 520px) { .guide { grid-template-columns: 6.5rem 1fr; gap: 1rem; } }
+
+  .back-link { display: inline-block; margin-top: 1.5rem; color: var(--pine); font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+  .back-link:hover { text-decoration: underline; }
+  .page-title { padding: 2.5rem 0 0.5rem; }
+  .page-title h1 { font-size: clamp(2rem, 5.5vw, 2.8rem); }
+  .other-tours { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .other-tours .tour-grid { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+  .hero.compact { padding: 2rem 0 0.5rem; }
+  .hero.compact .eyebrow { margin-bottom: 1rem; }
+  .hero.compact h1 { margin-bottom: 0.9rem; }
+  .hero.compact .rating { margin-bottom: 0.5rem; }
+  .guide { align-items: start; }
+  .guide .lede { font-size: 1.1rem; color: var(--ink-soft); margin: 0.2rem 0 1.2rem; }
+  .guide .lede strong { color: var(--ink); font-weight: 600; }
+  /* The width/height attributes are there to stop layout jumping; let CSS decide the real shape. */
+  .tour-card img, .banner img, .guide img, .photo-pair img { height: auto; }
