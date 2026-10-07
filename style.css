@@ -670,3 +670,4 @@
   .guide .lede strong { color: var(--ink); font-weight: 600; }
   /* The width/height attributes are there to stop layout jumping; let CSS decide the real shape. */
   .tour-card img, .banner img, .guide img, .photo-pair img { height: auto; }
+  .eyebrow .kanji { white-space: nowrap; }
