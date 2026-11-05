@@ -680,3 +680,21 @@
     .eyebrow::after { order: 2; align-self: center; }
     .eyebrow .kanji { order: 3; }
   }
+
+  /* Choose your date (book.html, dates.js) */
+  .datepick { margin-top: 1.25rem; max-width: 22rem; background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 1rem; box-shadow: 0 1px 3px var(--shadow); }
+  .dp-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .5rem; }
+  .dp-month { font-weight: 600; }
+  .dp-prev, .dp-next { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 8px;
+    width: 2.25rem; height: 2.25rem; font-size: 1.1rem; cursor: pointer; }
+  .dp-prev:disabled, .dp-next:disabled { opacity: .3; cursor: default; }
+  .dp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+  .dp-dow { font-size: .75rem; color: var(--mist); padding-bottom: 2px; }
+  .dp-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px;
+    font: inherit; font-size: .95rem; border: 1px solid transparent; }
+  button.dp-day { background: none; color: var(--pine); border-color: var(--line); cursor: pointer; font-weight: 600; }
+  button.dp-day:hover { border-color: var(--pine); }
+  button.dp-day.is-picked { background: var(--pine); color: var(--paper); border-color: var(--pine); }
+  .dp-day.is-closed { color: var(--mist); opacity: .45; text-decoration: line-through; }
+  .dp-picked { margin: .75rem 0 0; font-size: .95rem; color: var(--ink-soft); }
