@@ -5,7 +5,7 @@ event titles: that calendar holds medical and family events. Any busy time on a
 day closes the whole day (a tour is eight hours). 2nd and 4th Saturdays are
 always closed. Only dates go into the public file.
 
-Run daily. Commits and pushes dates.json only when it changes.
+Runs daily at 06:00, hourly after that, and after each tbl-sync run. Commits and pushes dates.json only when it changes.
 Usage: python tools/publish_dates.py [--no-push]
 """
 import datetime as dt
@@ -63,7 +63,7 @@ def main():
     data = {"from": today.isoformat(), "to": last.isoformat(),
             "closed": sorted(x.isoformat() for x in closed if today <= x <= last)}
     new = json.dumps(data, indent=0) + "\n"
-    old = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""
+    old = open(OUT, encoding="utf-8").read().replace("\r\n", "\n") if os.path.exists(OUT) else ""
     if new == old:
         print("dates.json unchanged")
         return
@@ -74,6 +74,9 @@ def main():
         return
     git = ["git", "-C", REPO]
     subprocess.run(git + ["add", "dates.json"], check=True)
+    if subprocess.run(git + ["diff", "--cached", "--quiet", "--", "dates.json"]).returncode == 0:
+        print("no change after git normalisation")
+        return
     subprocess.run(git + ["commit", "-q", "-m", "Update open tour dates"], check=True)
     subprocess.run(git + ["push", "-q"], check=True)
     print("pushed")
